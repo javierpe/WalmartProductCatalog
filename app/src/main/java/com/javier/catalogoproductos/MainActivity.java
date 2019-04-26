@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements MainLayer.View{
         tabLayout = findViewById(R.id.tabLayout);
         lbSaveAmount = findViewById(R.id.lbSaveAmount);
         progressBar = findViewById(R.id.progressBar);
+        progressBar.setIndeterminate(true);
         viewPager.setOnTouchListener((v, event) -> true);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
