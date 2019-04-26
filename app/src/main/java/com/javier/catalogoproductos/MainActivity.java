@@ -10,22 +10,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.javier.mvp.App;
 import com.javier.mvp.main.MainLayer;
-import com.javier.pages.DescriptionFragment;
 import com.javier.pages.DetailsFragment;
 import com.javier.pages.InfoFragment;
 import com.javier.pages.SlideItemFragment;
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements MainLayer.View{
     private OfferAdapter offerAdapter;
     private LinearLayoutManager linearLayoutManager;
     private PageIndicatorView pageIndicatorView;
-    private DescriptionFragment descriptionFragment;
     private TabLayout tabLayout;
 
     private ScreenSlidePagerAdapter slideImagesAdapter;
@@ -68,9 +67,7 @@ public class MainActivity extends AppCompatActivity implements MainLayer.View{
     private TextView lbBefore;
     private TextView lbSaveAmount;
 
-    private FrameLayout btExit;
-
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,15 +79,13 @@ public class MainActivity extends AppCompatActivity implements MainLayer.View{
 
         // Start Realm
         startRealm();
-
         // Get views
         setup();
-
-        swipeRefreshLayout.setOnRefreshListener(() -> requestProduct());
         requestProduct();
     }
 
     private void requestProduct(){
+        progressBar.setVisibility(View.VISIBLE);
         presenter.requestProduct("00750940180662");
     }
 
@@ -106,8 +101,6 @@ public class MainActivity extends AppCompatActivity implements MainLayer.View{
         lbProductPrice = findViewById(R.id.lbProductPrice);
         lbBefore = findViewById(R.id.lbBefore);
         lbMaxMSI = findViewById(R.id.lbMaxMSI);
-        btExit = findViewById(R.id.btExit);
-        swipeRefreshLayout = findViewById(R.id.swipeLayout);
         pageIndicatorView = findViewById(R.id.pageIndicatorView);
         offerList = findViewById(R.id.offerList);
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
@@ -115,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements MainLayer.View{
         findViewById(R.id.btExit).setOnClickListener(v -> finish());
         tabLayout = findViewById(R.id.tabLayout);
         lbSaveAmount = findViewById(R.id.lbSaveAmount);
+        progressBar = findViewById(R.id.progressBar);
         viewPager.setOnTouchListener((v, event) -> true);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -150,12 +144,13 @@ public class MainActivity extends AppCompatActivity implements MainLayer.View{
 
     @Override
     public void requestProductError(String message) {
+        progressBar.setVisibility(View.GONE);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRequestProductSuccess(Product product) {
-
+        progressBar.setVisibility(View.GONE);
 
         lbMaxMSI.setText(Html.fromHtml(String.format("Hasta <b>%s</b> meses sin intereses", product.getMaxMSI())));
 
@@ -235,6 +230,13 @@ public class MainActivity extends AppCompatActivity implements MainLayer.View{
         super.onResume();
         presenter.setView(this);
         presenter.loadProduct();
+    }
+
+    private void showProgressDialog(){
+        Dialog d = new Dialog(getApplicationContext());
+        d.setCancelable(false);
+        d.setTitle("Cargando");
+        d.show();
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

@@ -55,10 +55,6 @@ public class MainPresenter implements MainLayer.Presenter {
             if(mainView != null) {
                 mainView.onRequestProductSuccess(product);
             }
-        }else {
-            if(mainView != null) {
-                mainView.requestProductError("No se pudo guardar el producto");
-            }
         }
     }
 }
