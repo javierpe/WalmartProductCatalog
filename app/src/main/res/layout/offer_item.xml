@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/offerItemView"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="12dp"
+    android:background="?attr/selectableItemBackground">
+
+    <FrameLayout
+        android:id="@+id/selectorView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@drawable/stroke_selected">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lbProductStatus"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/medium"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:text="Nuevo"/>
+
+            <TextView
+                android:id="@+id/lbBefore"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/medium"
+                android:text="$11,999.00"/>
+
+            <TextView
+                android:id="@+id/lbProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp"
+                android:fontFamily="@font/bold"
+                android:text="$9,599.00"/>
+
+            <TextView
+                android:id="@+id/lbSeller"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fontFamily="@font/medium"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:text="Vendido por Walmart"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

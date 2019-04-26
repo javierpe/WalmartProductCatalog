@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_insetEdge="top"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <FrameLayout
+                        android:id="@+id/btExit"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/shape_circle">
+
+                        <ImageView
+                            android:id="@+id/btBack"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_chevron_left_white_24dp" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lbProductStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/medium"
+                            android:textColor="#000000"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/lbBefore"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/medium"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/lbProductPrice"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="22sp"
+                                android:gravity="bottom"
+                                android:fontFamily="@font/bold"/>
+
+                            <TextView
+                                android:id="@+id/lbSaveAmount"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:paddingStart="5dp"
+                                android:gravity="bottom|start"
+                                android:fontFamily="@font/medium"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/lbMaxMSI"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:fontFamily="@font/medium"
+                            android:layout_weight="1"
+                            android:textColor="#000000"
+                            android:textSize="12sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/slide"
+                    android:layout_width="260dp"
+                    android:layout_height="260dp"
+                    android:layout_gravity="center"/>
+
+                <com.rd.PageIndicatorView
+                    android:id="@+id/pageIndicatorView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="center"
+                    app:piv_animationType="slide"
+                    app:piv_dynamicCount="false"
+                    app:piv_count="4"
+                    app:piv_interactiveAnimation="true"
+                    app:piv_selectedColor="@color/colorSelectedIndicator"
+                    app:piv_unselectedColor="@color/colorUnselectedIndicator"
+                    app:piv_padding="8dp"
+                    app:piv_radius="6dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/btLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_chevron_left_grey600_24dp"/>
+
+                    </FrameLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/offerList"
+                        android:layout_gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:requiresFadingEdge="horizontal"
+                        android:layout_weight="1"/>
+
+                    <FrameLayout
+                        android:id="@+id/btRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_chevron_right_grey600_24dp"/>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/bottomsheet_top">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="18dp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lbProductTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/medium"/>
+
+                    <TextView
+                        android:id="@+id/lbProductBrand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="20dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:tabIndicatorFullWidth="true"
+                        app:tabRippleColor="@color/colorPrimary"
+                        app:tabSelectedTextColor="@color/colorPrimary"
+                        app:tabIconTint="@color/colorPrimary"
+                        app:tabMode="fixed"
+                        app:tabIndicatorColor="@color/colorPrimary"
+                        app:tabTextColor="@color/colorTabItemUnselected"
+                        app:tabBackground="@color/colorPrimaryDark"
+                        style="@style/Widget.MaterialComponents.TabLayout.Colored">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:icon="@drawable/ic_card_text_white_24dp"
+                            android:text="Descripción"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:icon="@drawable/ic_file_document_box_multiple_outline_white_24dp"
+                            android:text="Características"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
